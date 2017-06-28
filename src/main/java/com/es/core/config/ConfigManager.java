@@ -16,7 +16,7 @@ public  class ConfigManager{
 
    public static <T> T GetConfig(Class<T> tclass){
        try {
-           T t=  (T) tclass.newInstance();
+           T t=   tclass.newInstance();
          return  t;
        }
        catch (InstantiationException e) {
