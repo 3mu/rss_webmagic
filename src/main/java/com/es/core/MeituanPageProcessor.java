@@ -2,28 +2,27 @@ package com.es.core;
 
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 import us.codecraft.webmagic.selector.Selectable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestPageProcessor implements PageProcessor {
+public class MeituanPageProcessor implements PageProcessor {
 
     private Site site = Site.me().setRetryTimes(3).setSleepTime(1000);
 
     @Override
     public void process(Page page) {
-        List<String> targeturls=new ArrayList<String>();
+        List<String> targets=new ArrayList<String>();
         Selectable links=page.getHtml().links();
         for(String link : links.all())
         {
-           if (link.contains("tech.meituan.com")){
-               targeturls.add(link);
+           if (link.contains("tech.meituan.com")&&link.contains(".html")){
+               targets.add(link);
            }
         }
-        page.addTargetRequests(targeturls);
+        page.addTargetRequests(targets);
         System.out.println(page.getUrl());
     }
 
@@ -32,7 +31,4 @@ public class TestPageProcessor implements PageProcessor {
         return site;
     }
 
-    public static void main(String[] args) {
-        Spider.create(new TestPageProcessor()).addUrl("http://tech.meituan.com/").thread(5).run();
-    }
 }
