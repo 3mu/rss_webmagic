@@ -25,7 +25,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.es.core.TestPageProcessor</mainClass>
+                  <mainClass>com.es.core.App</mainClass>
                 </transformer>
               </transformers>
             </configuration>
